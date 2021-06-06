@@ -66,7 +66,6 @@ restorer:
 	global setjmp:function
 setjmp:
 	pop 	rsi
-	xor	eax, eax
 	mov	[rdi], rbx
 	mov	[rdi+0x8], rsp
 	push	rsi
@@ -77,8 +76,8 @@ setjmp:
 	mov	[rdi+0x30], r15
 	mov	[rdi+0x38], rsi
 	call	sys_rt_sigprocmask ;To get current signal maskm but it failed. 'Func a' will be eaten.
-	mov	rax, 0
 	mov	[rdi+0x40], rdx
+	xor	rax, rax
 	ret	 	
 	
 	global longjmp:function
